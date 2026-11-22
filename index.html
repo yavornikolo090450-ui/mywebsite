@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOWER BG | Official Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <a href="#home" class="logo">TOWER <span>BG</span></a>
+
+        <nav><a href="admin.html">🔐 Администратор</a>
+            <a href="#home">Начало</a>
+            <a href="#about">За играта</a>
+            <a href="#updates">Новини</a>
+            <a href="#leaderboard">Time Board</a>
+            <a href="#support">Support</a>
+            <a href="#community">Общност</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="status">● OFFICIAL ROBLOX GAME</div>
+
+            <h1>TOWER <span>BG</span></h1>
+            <h2>REACH THE TOP.</h2>
+
+            <p>
+                Добре дошъл в TOWER BG!
+                Приготви се за приключение, предизвикателства
+                и незабравими моменти.
+            </p>
+
+            <div class="buttons">
+                <a
+                    href="https://www.roblox.com/games/130583608053204/Tower-BG"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn primary">
+                    🎮 PLAY NOW
+                </a>
+
+                <a
+                    href="https://discord.gg/trEKzgW9c"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn secondary">
+                    DISCORD COMMUNITY
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-glow"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about section" id="about">
+        <div class="tag">ABOUT THE GAME</div>
+
+        <h2>ЗА <span>TOWER BG</span></h2>
+
+        <p>
+            TOWER BG е Roblox игра, в която те очакват
+            интересни предизвикателства и приключения.
+
+            Покажи уменията си и достигни върха!
+        </p>
+
+        <div class="features">
+            <div class="feature">
+                <span>🏆</span>
+                <h3>ПРЕДИЗВИКАТЕЛСТВА</h3>
+                <p>Докажи, че можеш да стигнеш върха.</p>
+            </div>
+
+            <div class="feature">
+                <span>🎮</span>
+                <h3>ЗАБАВЛЕНИЕ</h3>
+                <p>Играй и се забавлявай с приятели.</p>
+            </div>
+
+            <div class="feature">
+                <span>⚡</span>
+                <h3>НОВИ ЪПДЕЙТИ</h3>
+                <p>Очаквай нови подобрения и изненади.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPDATES -->
+    <section class="updates section" id="updates">
+        <div class="tag">LATEST NEWS</div>
+
+        <h2>НОВИНИ И <span>ЪПДЕЙТИ</span></h2>
+
+        <div class="news-card">
+            <div class="news-icon">🚀</div>
+
+            <div>
+                <h3>TOWER BG – COMING SOON</h3>
+                <p>Следи сайта за новини около играта!</p>
+            </div>
+        </div>
+    </section>
+
+<!-- TIME BOARD -->
+<section class="leaderboard section" id="leaderboard">
+    <div class="tag">TOWER BG RANKING</div>
+
+    <h2>TIME <span>BOARD</span></h2>
+
+    <p>Най-активните играчи в TOWER BG!</p>
+
+    <div class="leaderboard-container">
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>МЯСТО</th>
+                    <th>ИГРАЧ</th>
+                    <th>ВРЕМЕ В ИГРАТА</th>
+                </tr>
+            </thead>
+
+            <tbody id="leaderboardBody">
+                <tr>
+                    <td colspan="3">Класацията се подготвя...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="small" id="leaderboardUpdated">
+        TOWER BG – PLAYTIME RANKING
+    </p>
+</section>
+
+    <!-- SUPPORT -->
+    <section class="support section" id="support">
+        <div class="tag">TOWER BG SUPPORT</div>
+
+        <h2>СВЪРЖИ СЕ С <span>SUPPORT</span></h2>
+
+        <p>
+            Изпрати ни заявка и нашият екип ще се свърже
+            с теб по имейл.
+        </p>
+
+        <form
+            id="supportForm"
+            action="https://formspree.io/f/xgaknojp"
+            method="POST">
+
+            <input
+                type="hidden"
+                name="_subject"
+                value="New TOWER BG Support Request">
+
+            <label for="firstName">First Name</label>
+            <input
+                type="text"
+                id="firstName"
+                name="first_name"
+                placeholder="Твоето собствено име"
+                required>
+
+            <label for="lastName">Last Name</label>
+            <input
+                type="text"
+                id="lastName"
+                name="last_name"
+                placeholder="Твоята фамилия"
+                required>
+
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Твоят имейл"
+                required>
+
+            <label for="confirmEmail">Confirm Email</label>
+            <input
+                type="email"
+                id="confirmEmail"
+                name="confirm_email"
+                placeholder="Повтори имейла си"
+                required>
+
+            <label for="robloxUsername">Roblox Username</label>
+            <input
+                type="text"
+                id="robloxUsername"
+                name="roblox_username"
+                placeholder="Твоето Roblox име"
+                required>
+
+            <label for="category">Support Category</label>
+            <select id="category" name="category" required>
+                <option value="">Избери категория</option>
+                <option value="Bug Report">Bug Report</option>
+                <option value="Player Report">Player Report</option>
+                <option value="Security Report">Security Report</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="description">Description</label>
+            <textarea
+                id="description"
+                name="description"
+                placeholder="Опиши проблема..."
+                rows="6"
+                required></textarea>
+
+            <label class="support-check">
+                <input
+                    type="checkbox"
+                    name="rules_agreement"
+                    value="Agreed"
+                    required>
+                Съгласен съм с
+                <a href="rules.html" target="_blank">
+                    правилата на TOWER BG
+                </a>.
+            </label>
+
+            <label class="support-check">
+                <input
+                    type="checkbox"
+                    name="email_confirmation"
+                    value="Confirmed"
+                    required>
+                Потвърждавам, че посоченият имейл е мой
+                и е правилен.
+            </label>
+
+            <button type="submit" class="btn primary">
+                SEND SUPPORT REQUEST
+            </button>
+        </form>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="community section" id="community">
+        <div class="tag">JOIN OUR COMMUNITY</div>
+
+        <h2>СТАНИ ЧАСТ ОТ <span>TOWER BG</span></h2>
+
+        <p>
+            Присъедини се към нашата общност
+            и бъди част от приключението!
+        </p>
+
+        <a
+            href="https://discord.gg/trEKzgW9c"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn primary">
+            JOIN OUR DISCORD
+        </a>
+
+        <p class="small">Очакваме те в нашата общност!</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <h2>TOWER <span>BG</span></h2>
+        <p>OFFICIAL ROBLOX GAME WEBSITE</p>
+        <p>© 2026 TOWER BG. All rights reserved.</p>
+    </footer>
+
+    <!-- EMAIL CONFIRMATION -->
+    <script>
+        const supportForm = document.getElementById("supportForm");
+
+        supportForm.addEventListener("submit", function(event) {
+            const email = document.getElementById("email").value.trim().toLowerCase();
+            const confirmEmail = document.getElementById("confirmEmail").value.trim().toLowerCase();
+
+            if (email !== confirmEmail) {
+                event.preventDefault();
+                alert("Имейл адресите не съвпадат! Провери ги отново.");
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+

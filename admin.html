@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOWER BG | Admin Panel</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 25px 15px;
+    background: #080811;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.topbar {
+    max-width: 1050px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0 25px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo span, h1 span, h2 span {
+    color: #a36bff;
+}
+
+.admin-label {
+    color: #b58aff;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
+.container {
+    max-width: 1050px;
+    margin: 20px auto;
+}
+
+.panel {
+    background: #141421;
+    border: 1px solid #7545bd;
+    border-radius: 15px;
+    padding: 28px;
+    margin-bottom: 25px;
+}
+
+.login-panel {
+    max-width: 480px;
+    margin: 70px auto;
+}
+
+h1, h2 { margin-top: 0; }
+
+.subtitle {
+    color: #aaa5bb;
+    line-height: 1.6;
+}
+
+label {
+    display: block;
+    margin: 18px 0 8px;
+    font-weight: bold;
+}
+
+input, textarea {
+    display: block;
+    width: 100%;
+    margin: 10px 0 18px;
+    padding: 14px;
+    border: 1px solid #51406d;
+    border-radius: 8px;
+    background: #090912;
+    color: white;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 240px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #a36bff;
+}
+
+button {
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary {
+    background: #934cff;
+    color: white;
+}
+
+.primary:hover { background: #7736d6; }
+
+.secondary {
+    background: #383044;
+    color: white;
+}
+
+.danger {
+    background: #963348;
+    color: white;
+}
+
+.full {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#dashboard { display: none; }
+
+.emoji-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 20px;
+}
+
+.emoji-bar button {
+    background: #292337;
+    color: white;
+    font-size: 20px;
+    padding: 8px 11px;
+}
+
+.upload-area {
+    padding: 25px;
+    border: 2px dashed #65458c;
+    border-radius: 12px;
+    background: #0c0b16;
+    text-align: center;
+}
+
+.upload-area p {
+    color: #aaa5bb;
+}
+
+.upload-area input {
+    border: 0;
+    background: transparent;
+}
+
+.media-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.media-preview img,
+.media-preview video,
+.update-media img,
+.update-media video {
+    width: 170px;
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 9px;
+}
+
+.status {
+    margin-top: 15px;
+    color: #c4a6ff;
+    white-space: pre-wrap;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.update-card {
+    background: #0c0b16;
+    border: 1px solid #35234d;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+.update-card p {
+    color: #d0c9dd;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.update-date {
+    color: #9389a8;
+    font-size: 12px;
+    margin: 12px 0;
+}
+
+.update-media {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+@media (max-width: 600px) {
+    .panel { padding: 19px; }
+    .logo { font-size: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="logo">TOWER <span>BG</span></div>
+    <div class="admin-label">ADMINISTRATION</div>
+</header>
+
+<main class="container">
+
+    <!-- LOGIN -->
+
+    <section id="loginScreen" class="panel login-panel">
+
+        <h1>TOWER <span>BG ADMIN</span></h1>
+
+        <p class="subtitle">
+            Влез в административния панел на TOWER BG.
+        </p>
+
+        <form id="loginForm">
+
+            <label for="username">Потребителско име</label>
+            <input
+                type="text"
+                id="username"
+                autocomplete="username"
+                placeholder="Administrator username"
+                required>
+
+            <label for="password">Парола</label>
+            <input
+                type="password"
+                id="password"
+                autocomplete="current-password"
+                placeholder="Administrator password"
+                required>
+
+            <button type="submit" class="primary full">
+                LOGIN
+            </button>
+
+        </form>
+
+        <p id="loginStatus" class="status"></p>
+    </section>
+
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard">
+
+        <div class="panel section-heading">
+            <div>
+                <h1>WELCOME, <span>ADMIN</span></h1>
+                <p class="subtitle">
+                    Управление на TOWER BG.
+                </p>
+            </div>
+
+            <button id="logoutButton" class="secondary">
+                LOG OUT
+            </button>
+        </div>
+
+
+        <!-- CREATE UPDATE -->
+
+        <div class="panel">
+
+            <h2>1. <span>CREATE UPDATE</span></h2>
+
+            <p class="subtitle">
+                Напиши новината, която искаш да публикуваш.
+            </p>
+
+            <form id="publishForm">
+
+                <label for="updateTitle">
+                    Заглавие на ъпдейта
+                </label>
+
+                <input
+                    type="text"
+                    id="updateTitle"
+                    placeholder="Например: UPDATE 1 🚀"
+                    required>
+
+                <label for="updateDescription">
+                    Описание на ъпдейта
+                </label>
+
+                <textarea
+                    id="updateDescription"
+                    placeholder="Напиши всичко ново в TOWER BG..."></textarea>
+
+                <div class="emoji-bar">
+                    <button type="button" data-emoji="😀">😀</button>
+                    <button type="button" data-emoji="🎮">🎮</button>
+                    <button type="button" data-emoji="🏆">🏆</button>
+                    <button type="button" data-emoji="🚀">🚀</button>
+                    <button type="button" data-emoji="🔥">🔥</button>
+                    <button type="button" data-emoji="⭐">⭐</button>
+                    <button type="button" data-emoji="✅">✅</button>
+                    <button type="button" data-emoji="💜">💜</button>
+                </div>
+
+                <label>Снимки и видеоклипове</label>
+
+                <div class="upload-area">
+                    <h3>📁 ADD MEDIA</h3>
+
+                    <p>
+                        Избери снимки или видеоклипове
+                        от компютъра си.
+                    </p>
+
+                    <input
+                        type="file"
+                        id="mediaFiles"
+                        accept="image/*,video/mp4,video/webm"
+                        multiple>
+                </div>
+
+                <div id="mediaPreview" class="media-preview"></div>
+
+                <button
+                    type="submit"
+                    id="publishButton"
+                    class="primary full">
+                    🚀 PUBLISH UPDATE
+                </button>
+
+                <p id="publishStatus" class="status"></p>
+
+            </form>
+        </div>
+
+
+        <!-- PUBLISHED UPDATES -->
+
+        <div class="panel">
+
+            <div class="section-heading">
+                <h2>2. <span>PUBLISHED UPDATES</span></h2>
+
+                <button id="refreshButton" class="secondary">
+                    REFRESH
+                </button>
+            </div>
+
+            <p class="subtitle">
+                Всички публикувани новини.
+                Само администраторът може да ги изтрива.
+            </p>
+
+            <div id="updatesList">
+                Зареждане на публикациите...
+            </div>
+
+        </div>
+
+
+        <!-- FUTURE SECTIONS -->
+
+        <div class="panel">
+            <h2>3. <span>MORE SECTIONS</span></h2>
+
+            <p class="subtitle">
+                Тук ще добавяме нови административни функции
+                в бъдеще.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+const loginScreen = document.getElementById("loginScreen");
+const dashboard = document.getElementById("dashboard");
+
+const loginForm = document.getElementById("loginForm");
+const publishForm = document.getElementById("publishForm");
+
+const description = document.getElementById("updateDescription");
+const mediaFiles = document.getElementById("mediaFiles");
+const mediaPreview = document.getElementById("mediaPreview");
+
+async function readResponse(response) {
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.error || "Something went wrong.");
+    }
+
+    return result;
+}
+
+async function sendAdminRequest(data) {
+    const response = await fetch("/api/admin", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    return readResponse(response);
+}
+
+
+// LOGIN
+
+loginForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const status = document.getElementById("loginStatus");
+    status.textContent = "Проверка на данните...";
+
+    try {
+        await sendAdminRequest({
+            action: "login",
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        });
+
+        loginScreen.style.display = "none";
+        dashboard.style.display = "block";
+
+        await loadUpdates();
+
+    } catch (error) {
+        status.textContent = error.message;
+    }
+});
+
+
+// LOGOUT
+
+document.getElementById("logoutButton")
+.addEventListener("click", async function() {
+    try {
+        await sendAdminRequest({ action: "logout" });
+        location.reload();
+    } catch (error) {
+        alert(error.message);
+    }
+});
+
+
+// EMOJI BUTTONS
+
+document.querySelectorAll("[data-emoji]").forEach(button => {
+    button.addEventListener("click", function() {
+        const emoji = button.dataset.emoji;
+
+        const start = description.selectionStart;
+        const end = description.selectionEnd;
+
+        description.value =
+            description.value.substring(0, start) +
+            emoji +
+            description.value.substring(end);
+
+        description.focus();
+
+        const cursor = start + emoji.length;
+        description.setSelectionRange(cursor, cursor);
+    });
+});
+
+
+// MEDIA PREVIEW
+
+mediaFiles.addEventListener("change", function() {
+    mediaPreview.innerHTML = "";
+
+    for (const file of mediaFiles.files) {
+        const url = URL.createObjectURL(file);
+
+        let element;
+
+        if (file.type.startsWith("image/")) {
+            element = document.createElement("img");
+        } else if (file.type.startsWith("video/")) {
+            element = document.createElement("video");
+            element.controls = true;
+        } else {
+            continue;
+        }
+
+        element.src = url;
+        mediaPreview.appendChild(element);
+    }
+});
+
+
+// PUBLISH UPDATE
+
+publishForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const status = document.getElementById("publishStatus");
+    const button = document.getElementById("publishButton");
+
+    status.textContent = "Изпращане на публикацията...";
+    button.disabled = true;
+
+    try {
+        const formData = new FormData();
+
+        formData.append("action", "publish");
+        formData.append(
+            "title",
+            document.getElementById("updateTitle").value
+        );
+        formData.append("description", description.value);
+
+        for (const file of mediaFiles.files) {
+            formData.append("media", file);
+        }
+
+        const response = await fetch("/api/admin", {
+            method: "POST",
+            credentials: "same-origin",
+            body: formData
+        });
+
+        await readResponse(response);
+
+        status.textContent = "Ъпдейтът е публикуван!";
+
+        publishForm.reset();
+        mediaPreview.innerHTML = "";
+
+        await loadUpdates();
+
+    } catch (error) {
+        status.textContent = error.message;
+
+    } finally {
+        button.disabled = false;
+    }
+});
+
+
+// LOAD PUBLISHED UPDATES
+
+async function loadUpdates() {
+    const list = document.getElementById("updatesList");
+
+    list.textContent = "Зареждане...";
+
+    try {
+        const response = await fetch("/api/updates", {
+            cache: "no-store"
+        });
+
+        const result = await readResponse(response);
+
+        list.innerHTML = "";
+
+        if (!result.updates || result.updates.length === 0) {
+            list.textContent = "Все още няма публикувани ъпдейти.";
+            return;
+        }
+
+        for (const update of result.updates) {
+            const card = document.createElement("article");
+            card.className = "update-card";
+
+            const heading = document.createElement("h3");
+            heading.textContent = update.title;
+
+            const text = document.createElement("p");
+            text.textContent = update.description || "";
+
+            const date = document.createElement("div");
+            date.className = "update-date";
+            date.textContent = update.created_at || "";
+
+            const mediaContainer = document.createElement("div");
+            mediaContainer.className = "update-media";
+
+            for (const media of (update.media || [])) {
+                let element;
+
+                if (media.type && media.type.startsWith("image/")) {
+                    element = document.createElement("img");
+                } else if (media.type && media.type.startsWith("video/")) {
+                    element = document.createElement("video");
+                    element.controls = true;
+                } else {
+                    continue;
+                }
+
+                element.src = media.url;
+                mediaContainer.appendChild(element);
+            }
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "danger";
+            deleteButton.textContent = "DELETE UPDATE";
+
+            deleteButton.addEventListener("click", async function() {
+                if (!confirm("Сигурен ли си, че искаш да изтриеш този ъпдейт?")) {
+                    return;
+                }
+
+                try {
+                    await sendAdminRequest({
+                        action: "delete",
+                        id: update.id
+                    });
+
+                    await loadUpdates();
+
+                } catch (error) {
+                    alert(error.message);
+                }
+            });
+
+            card.appendChild(heading);
+            card.appendChild(text);
+            card.appendChild(mediaContainer);
+            card.appendChild(date);
+            card.appendChild(deleteButton);
+
+            list.appendChild(card);
+        }
+
+    } catch (error) {
+        list.textContent = error.message;
+    }
+}
+
+
+// REFRESH
+
+document.getElementById("refreshButton")
+.addEventListener("click", loadUpdates);
+
+</script>
+
+</body>
+</html>
